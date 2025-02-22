@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Easel",
+  "version": "1.0.0",
+  "description": "An extension that allows you to easily QA the design parity of your Figma Components on a web page.",
+  "icons": {
+    "128": "images/Easel_Icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {},
+  "background": {
+    "service_worker": "background.js"
+  }
+}
