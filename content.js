@@ -13,7 +13,7 @@ if (document.getElementById("overlayCanvas") === null) {
   canvas.style.top = "0";
   canvas.style.left = "0";
   canvas.style.zIndex = "1000";
-  canvas.style.border = "5px dashed yellow";
+  canvas.style.border = "5px dashed purple";
 
   document.body.appendChild(canvas);
 }
