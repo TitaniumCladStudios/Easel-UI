@@ -1,22 +1,21 @@
 let newCanvasBtn = document.getElementById("newCanvas");
+let toggleCanvasBtn = document.getElementById("toggleCanvas");
+
 
 newCanvasBtn.addEventListener("click", newCanvas);
-
-let canvasShown = false;
+toggleCanvasBtn.addEventListener("click", toggleCanvas);
 
 function newCanvas() {
   (async () => {
     const response = await chrome.runtime.sendMessage({ newCanvas: true });
-    canvasShown = !canvasShown
+    console.log(response);
+  })();
+}
 
-    if (canvasShown) {
-      newCanvasBtn.classList.add("red");
-    }
-    else {
-      newCanvasBtn.classList.remove("red");
-    }
 
-    // do something with response here, not outside the function
+function toggleCanvas() {
+  (async () => {
+    const response = await chrome.runtime.sendMessage({ toggleCanvas: true });
     console.log(response);
   })();
 }
