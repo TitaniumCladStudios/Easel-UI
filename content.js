@@ -2,6 +2,16 @@
 
 // Check if the canvas exists and add it. Otherwise, remove it.
 if (document.getElementById("overlayCanvas") === null) {
+  spawnCanvas();
+}
+else {
+  document.body.removeChild(document.getElementById("overlayCanvas"));
+  if (window.confirm("Do you want to start a new canvas? Unsaved changes will be lost.")) {
+    spawnCanvas();
+  }
+}
+
+function spawnCanvas() {
   // Create the canvas
   let canvas = document.createElement("canvas");
 
@@ -15,8 +25,6 @@ if (document.getElementById("overlayCanvas") === null) {
   canvas.style.zIndex = "1000";
   canvas.style.border = "5px dashed purple";
 
+  // Add the canvas
   document.body.appendChild(canvas);
-}
-else {
-  document.body.removeChild(document.getElementById("overlayCanvas"));
 }
