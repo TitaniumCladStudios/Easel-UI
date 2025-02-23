@@ -11,7 +11,7 @@ function toggleCanvas() {
   }
 }
 
-function loadImage(file) {
+function loadImage() {
   let canvas = document.getElementById('overlayCanvas');
   let ctx = canvas.getContext('2d');
 
@@ -25,7 +25,7 @@ function loadImage(file) {
     }
     img.src = event.target.result;
   }
-  reader.readAsDataURL(file);
+  reader.readAsDataURL(chrome.storage.local.fileToUpload);
 
 }
 
@@ -55,9 +55,12 @@ chrome.runtime.onMessage.addListener(
       sendResponse({ message: "Canvas toggled" });
     }
     else if (request.loadImage) {
+      chrome.storage.local.set({
+        fileToUpload: request.file,
+      });
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        func: loadImage(request.file),
+        func: loadImage,
       });
 
       sendResponse({ message: "Image Loaded" });
