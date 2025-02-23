@@ -27,4 +27,5 @@ function spawnCanvas() {
 
   // Add the canvas
   document.body.appendChild(canvas);
+
 }
