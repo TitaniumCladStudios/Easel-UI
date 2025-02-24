@@ -1,5 +1,6 @@
 // background.js
 
+
 function toggleCanvas() {
   let canvas = document.getElementById("overlayCanvas");
 
@@ -14,6 +15,13 @@ function toggleCanvas() {
 function toggleUploadModal() {
   let modal = document.getElementById("uploadModal");
   modal.showModal();
+}
+
+function changeOpacity(opacity) {
+  let layer = document.getElementById("overlayCanvas");
+  if (layer == null) return;
+  layer.style.opacity = opacity * .01;
+
 }
 
 chrome.runtime.onMessage.addListener(
@@ -46,6 +54,15 @@ chrome.runtime.onMessage.addListener(
       });
 
       sendResponse({ message: "Image Loaded" });
+    }
+    else if (request.changeOpacity) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: changeOpacity,
+        args: [request.opacity],
+      });
+
+      sendResponse({ message: "Opacity Changed" });
     }
     else {
       sendResponse({ farewell: "Could not perform action" });
