@@ -54,12 +54,77 @@ function spawnCanvas() {
 function handleImage(e) {
   let canvas = document.getElementById('overlayCanvas');
   let ctx = canvas.getContext('2d');
+
+  let isDragging = false;
+
+  let startX = 0;
+
+  let startY = 0;
+
+  let imageX = 0;
+
+  let imageY = 0;
+
   let reader = new FileReader();
   reader.onload = function (event) {
     let img = new Image();
-    img.onload = function () {
-      ctx.drawImage(img, 0, 0);
-    }
+    img.onload = () => {
+
+      // Draw the image initially
+
+      ctx.drawImage(img, imageX, imageY);
+
+
+
+      canvas.addEventListener('mousedown', (event) => {
+
+        isDragging = true;
+
+        startX = event.clientX - canvas.offsetLeft;
+
+        startY = event.clientY - canvas.offsetTop;
+
+      });
+
+
+
+      canvas.addEventListener('mousemove', (event) => {
+
+        if (isDragging) {
+
+          const deltaX = event.clientX - canvas.offsetLeft - startX;
+
+          const deltaY = event.clientY - canvas.offsetTop - startY;
+
+          imageX += deltaX;
+
+          imageY += deltaY;
+
+
+
+          // Clear canvas and redraw the image at new position
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          ctx.drawImage(img, imageX, imageY);
+
+          startX = event.clientX - canvas.offsetLeft;
+
+          startY = event.clientY - canvas.offsetTop;
+
+        }
+
+      });
+
+
+
+      canvas.addEventListener('mouseup', () => {
+
+        isDragging = false;
+
+      });
+
+    };
     img.src = event.target.result;
   }
   reader.readAsDataURL(e.target.files[0]);
