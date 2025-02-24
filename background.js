@@ -11,25 +11,10 @@ function toggleCanvas() {
   }
 }
 
-function loadImage() {
-  let canvas = document.getElementById('overlayCanvas');
-  let ctx = canvas.getContext('2d');
-
-  let reader = new FileReader();
-  reader.onload = function (event) {
-    let img = new Image();
-    img.onload = function () {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
-    }
-    img.src = event.target.result;
-  }
-  reader.readAsDataURL(chrome.storage.local.fileToUpload);
-
+function toggleUploadModal() {
+  let modal = document.getElementById("uploadModal");
+  modal.showModal();
 }
-
-
 
 chrome.runtime.onMessage.addListener(
   async function (request, sender, sendResponse) {
@@ -55,12 +40,9 @@ chrome.runtime.onMessage.addListener(
       sendResponse({ message: "Canvas toggled" });
     }
     else if (request.loadImage) {
-      chrome.storage.local.set({
-        fileToUpload: request.file,
-      });
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        func: loadImage,
+        func: toggleUploadModal,
       });
 
       sendResponse({ message: "Image Loaded" });

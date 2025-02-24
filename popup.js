@@ -5,7 +5,7 @@ let loadImageBtn = document.getElementById("loadImage");
 
 newCanvasBtn.addEventListener("click", newCanvas);
 toggleCanvasBtn.addEventListener("click", toggleCanvas);
-loadImageBtn.addEventListener("change", loadImage, false);
+loadImageBtn.addEventListener("click", loadImage, false);
 
 function newCanvas() {
   (async () => {
@@ -22,9 +22,9 @@ function toggleCanvas() {
   })();
 }
 
-function loadImage(e) {
+function loadImage() {
   (async () => {
-    const response = await chrome.runtime.sendMessage({ loadImage: true, file: e.target.files[0] });
+    const response = await chrome.runtime.sendMessage({ loadImage: true });
     console.log(response);
   })();
 }
