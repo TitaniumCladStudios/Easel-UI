@@ -1,15 +1,15 @@
-let newCanvasBtn = document.getElementById("newCanvas");
-let toggleCanvasBtn = document.getElementById("toggleCanvas");
+let newEaselBtn = document.getElementById("newEasel");
+// let toggleCanvasBtn = document.getElementById("toggleCanvas");
 let loadImageBtn = document.getElementById("loadImage");
 
 
-newCanvasBtn.addEventListener("click", newCanvas);
-toggleCanvasBtn.addEventListener("click", toggleCanvas);
+newEaselBtn.addEventListener("click", newEasel);
+// toggleCanvasBtn.addEventListener("click", toggleCanvas);
 loadImageBtn.addEventListener("click", loadImage, false);
 
-function newCanvas() {
+function newEasel() {
   (async () => {
-    const response = await chrome.runtime.sendMessage({ newCanvas: true });
+    const response = await chrome.runtime.sendMessage({ newEasel: true });
     console.log(response);
   })();
 }

@@ -8,12 +8,35 @@
 <body>
   <div class="top-bar">Easel UI Checker</div>
   <div class="options">
-    <button class="light-blue" id="newCanvas">New Canvas</button>
-    <button class="blue" id="saveCanvas">Save Canvas</button>
-    <button class="dark-blue" id="loadCanvas">Load Canvas</button>
-    <button class="indigo" id="loadImage">Load Image</button>
-    <button class="light-blue" id="toggleCanvas">Toggle Canvas</button>
+    <button id="newEasel">New</button>
+    <button id="saveCanvas">Save</button>
+    <button id="loadCanvas">Load</button>
+    <button class="no-border" id="loadImage">Import</button>
+    <!-- <button class="light-blue" id="toggleCanvas">Toggle Layer</button> -->
   </div>
+
+  <div class="layer-list" id="layerList">
+    <div class="layer">
+      <p>Layer Name</p>
+      <div>
+        <button>&#128065;</button>
+        <button>&cross;</button>
+      </div>
+    </div>
+    <div class="layer">
+      <p>Layer Name</p>
+      <div>
+        <button>&#128065;</button>
+        <button>&cross;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="opacity-controls">
+    <label for="opacity">Visiblity</label>
+    <input name="opacity" id="opacity" type="range" value="100" class="win10-thumb" />
+  </div>
+
   <script src="popup.js"></script>
 </body>
 
