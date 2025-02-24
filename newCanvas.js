@@ -25,6 +25,7 @@ function spawnCanvas() {
   canvas.style.zIndex = "1000";
   canvas.style.border = "1px solid red";
   canvas.style.boxSizing = "border-box";
+  canvas.setAttribute("data-layer-number", 0)
 
   // Add the canvas
   document.body.appendChild(canvas);
@@ -34,6 +35,10 @@ function spawnCanvas() {
   uploadModal.id = "uploadModal";
   uploadModal.style.position = "fixed";
   uploadModal.style.top = "10%";
+  uploadModal.style.border = "none";
+  uploadModal.style.width = "500px";
+  uploadModal.style.borderRadius = "15px";
+  uploadModal.style.boxShadow = "box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1)"
 
   // Create the image uploader input
   let imageInput = document.createElement("input");
