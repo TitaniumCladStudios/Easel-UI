@@ -53,6 +53,14 @@ The Easel menu has a "visibility" slider that will allow you to set the opacity
 of the canvas that is on the Easel. This will allow you to compare elements laid
 on top of one another.
 
+### Hiding the Easel
+
+The Easel has a very high z-index layer to ensure it goes overtop most webpages.
+This can cause interactivity problems and even prevent scrolling at times. If
+you need to hide the Easel to navigate around the page, but don't want to
+deleted the Easel, you can toggle the Easel on and off using the toggle button
+at the bottom of the menu.
+
 ## Road Map
 
 This was a weekend project that I threw together quickly to create a free

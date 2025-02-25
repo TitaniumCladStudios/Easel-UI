@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   width: 300px;
-  height: 200px;
+  height: 250px;
   padding: 0px;
   margin: 0px;
   font-family: "Montserrat", serif;
@@ -34,6 +34,10 @@ button {
   border: none;
 }
 
+.toggle-btn {
+  border: none;
+}
+
 button:hover {
   cursor: pointer;
   filter: brightness(75%);
@@ -47,8 +51,8 @@ button:disabled:hover {
   width: 100%;
   height: 50px;
   align-self: start;
-  background-color: #3A3A3A;
-  border-bottom: 1px solid #AFAFAF;
+  background-color: #3a3a3a;
+  border-bottom: 1px solid #afafaf;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,19 +62,19 @@ button:disabled:hover {
 }
 
 .light-blue {
-  background-color: #3DC2EC;
+  background-color: #3dc2ec;
 }
 
 .blue {
-  background-color: #4B70F5;
+  background-color: #4b70f5;
 }
 
 .dark-blue {
-  background-color: #4C3BCF;
+  background-color: #4c3bcf;
 }
 
 .indigo {
-  background-color: #402E7A;
+  background-color: #402e7a;
 }
 
 .red {
@@ -91,11 +95,11 @@ button:disabled:hover {
   height: 50px;
 }
 
-.layer>div {
+.layer > div {
   display: flex;
 }
 
-.layer>div>button {
+.layer > div > button {
   aspect-ratio: 1/1;
   border: none;
   border-left: 1px solid gray;
@@ -106,10 +110,8 @@ button:disabled:hover {
   gap: 16px;
   align-items: center;
   padding: 0px 16px;
-  height: calc(100% - 100px);
+  height: calc(100% - 150px);
 }
-
-
 
 /* Input ranges */
 
@@ -192,23 +194,27 @@ input[type="range"]::-webkit-slider-thumb {
   --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
   --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
   --clip-further: calc(100% + 1px);
-  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0 100vmax currentColor;
+  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+    100vmax currentColor;
 
   width: var(--thumb-width, var(--thumb-height));
-  background: linear-gradient(currentColor 0 0) scroll no-repeat left center / 50% calc(var(--track-height) + 1px);
+  background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
+    50% calc(var(--track-height) + 1px);
   background-color: currentColor;
   box-shadow: var(--box-fill);
   border-radius: var(--thumb-width, var(--thumb-height));
 
   filter: brightness(100%);
-  clip-path: polygon(100% -1px,
-      var(--clip-edges) -1px,
-      0 var(--clip-top),
-      -100vmax var(--clip-top),
-      -100vmax var(--clip-bottom),
-      0 var(--clip-bottom),
-      var(--clip-edges) 100%,
-      var(--clip-further) var(--clip-further));
+  clip-path: polygon(
+    100% -1px,
+    var(--clip-edges) -1px,
+    0 var(--clip-top),
+    -100vmax var(--clip-top),
+    -100vmax var(--clip-bottom),
+    0 var(--clip-bottom),
+    var(--clip-edges) 100%,
+    var(--clip-further) var(--clip-further)
+  );
 }
 
 input[type="range"]:hover::-webkit-slider-thumb {
@@ -222,7 +228,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100% calc(var(--track-height) + 1px);
+  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center /
+    100% calc(var(--track-height) + 1px);
 }
 
 input[type="range"]:disabled::-webkit-slider-thumb {

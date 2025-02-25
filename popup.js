@@ -1,12 +1,12 @@
 let newEaselBtn = document.getElementById("newEasel");
-// let toggleCanvasBtn = document.getElementById("toggleCanvas");
+let toggleCanvasBtn = document.getElementById("toggleCanvas");
 let loadImageBtn = document.getElementById("loadImage");
 let opacitySlider = document.getElementById("opacity");
 
 let layerCount = 0;
 
 newEaselBtn.addEventListener("click", newEasel);
-// toggleCanvasBtn.addEventListener("click", toggleCanvas);
+toggleCanvasBtn.addEventListener("click", toggleCanvas);
 loadImageBtn.addEventListener("click", loadImage, false);
 opacitySlider.addEventListener("change", changeOpacity);
 
