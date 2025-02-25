@@ -1,13 +1,11 @@
 // background.js
 
-
 function toggleCanvas() {
   let canvas = document.getElementById("overlayCanvas");
 
   if (canvas.style.display != "none") {
     canvas.style.display = "none";
-  }
-  else {
+  } else {
     canvas.style.display = "block";
   }
 }
@@ -20,13 +18,11 @@ function toggleUploadModal() {
 function changeOpacity(opacity) {
   let layer = document.getElementById("overlayCanvas");
   if (layer == null) return;
-  layer.style.opacity = opacity * .01;
-
+  layer.style.opacity = opacity * 0.01;
 }
 
 chrome.runtime.onMessage.addListener(
   async function (request, sender, sendResponse) {
-
     let queryOptions = { active: true, lastFocusedWindow: true };
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
     let [tab] = await chrome.tabs.query(queryOptions);
@@ -34,38 +30,28 @@ chrome.runtime.onMessage.addListener(
     if (request.newEasel) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ['newCanvas.js']
+        files: ["newCanvas.js"],
       });
-
-      sendResponse({ message: "New canvas spawned" });
-    }
-    else if (request.toggleCanvas) {
+    } else if (request.toggleCanvas) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: toggleCanvas,
       });
-
-      sendResponse({ message: "Canvas toggled" });
-    }
-    else if (request.loadImage) {
+    } else if (request.loadImage) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: toggleUploadModal,
       });
-
-      sendResponse({ message: "Image Loaded" });
-    }
-    else if (request.changeOpacity) {
+    } else if (request.changeOpacity) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: changeOpacity,
         args: [request.opacity],
       });
+    } else {
+      console.error("Message failed to process");
+    }
 
-      sendResponse({ message: "Opacity Changed" });
-    }
-    else {
-      sendResponse({ farewell: "Could not perform action" });
-    }
-  }
+    return true;
+  },
 );
