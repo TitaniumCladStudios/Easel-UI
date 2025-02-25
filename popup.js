@@ -5,31 +5,22 @@ let opacitySlider = document.getElementById("opacity");
 
 let layerCount = 0;
 
-newEaselBtn.addEventListener("click", newEasel);
-toggleCanvasBtn.addEventListener("click", toggleCanvas);
-loadImageBtn.addEventListener("click", loadImage, false);
+newEaselBtn.message = { newEasel: true };
+toggleCanvasBtn.message = { toggleCanvas: true };
+loadImageBtn.message = { loadImage: true };
+newEaselBtn.addEventListener("click", sendMessage, false);
+toggleCanvasBtn.addEventListener("click", sendMessage, false);
+loadImageBtn.addEventListener("click", sendMessage, false);
 opacitySlider.addEventListener("change", changeOpacity);
 
-function newEasel() {
+function sendMessage(e) {
   (async () => {
-    const response = await chrome.runtime.sendMessage({ newEasel: true });
+    const response = await chrome.runtime.sendMessage(e.currentTarget.message);
     console.log(response);
   })();
 }
 
-function toggleCanvas() {
-  (async () => {
-    const response = await chrome.runtime.sendMessage({ toggleCanvas: true });
-    console.log(response);
-  })();
-}
-
-function loadImage() {
-  (async () => {
-    const response = await chrome.runtime.sendMessage({ loadImage: true });
-  })();
-}
-
+// Had to declare a special function here for the time being
 function changeOpacity() {
   (async () => {
     const response = await chrome.runtime.sendMessage({
