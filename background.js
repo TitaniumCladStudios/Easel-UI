@@ -55,3 +55,7 @@ chrome.runtime.onMessage.addListener(
     return true;
   },
 );
+
+chrome.commands.onCommand.addListener((command) => {
+  console.log(`Command "${command}" triggered`);
+});

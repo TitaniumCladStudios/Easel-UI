@@ -6,15 +6,20 @@
   "icons": {
     "128": "images/Easel_Icon.png"
   },
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "storage"
-  ],
+  "permissions": ["activeTab", "scripting", "storage", "commands"],
   "action": {
     "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "commands": {
+    "delete-image": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+D",
+        "mac": "MacCtrl+Shift+D"
+      },
+      "description": "Remove the current image from the Easel"
+    }
   }
 }
