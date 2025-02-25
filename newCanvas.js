@@ -112,5 +112,7 @@ function handleImage(e) {
     img.src = event.target.result;
   };
   reader.readAsDataURL(e.target.files[0]);
+
+  document.getElementById("imageLoader").value = "";
   document.getElementById("uploadModal").close();
 }
