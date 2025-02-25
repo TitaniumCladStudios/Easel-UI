@@ -56,6 +56,23 @@ chrome.runtime.onMessage.addListener(
   },
 );
 
-chrome.commands.onCommand.addListener((command) => {
-  console.log(`Command "${command}" triggered`);
+function deleteImage() {
+  let canvas = document.getElementById("overlayCanvas");
+  if (canvas != null) {
+    let ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+chrome.commands.onCommand.addListener(async (command) => {
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let [tab] = await chrome.tabs.query(queryOptions);
+
+  if (command == "delete-image") {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: deleteImage,
+    });
+  }
 });
