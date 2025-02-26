@@ -20,6 +20,11 @@ function changeOpacity(opacity) {
   if (layer == null) return;
   layer.style.opacity = opacity * 0.01;
 }
+function changeScale(scale) {
+  let layer = document.getElementById("overlayCanvas");
+  if (layer == null) return;
+  layer.style.scale = 1 + scale / 100;
+}
 
 chrome.runtime.onMessage.addListener(
   async function (request, sender, sendResponse) {
@@ -47,6 +52,12 @@ chrome.runtime.onMessage.addListener(
         target: { tabId: tab.id },
         func: changeOpacity,
         args: [request.opacity],
+      });
+    } else if (request.changeScale) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: changeScale,
+        args: [request.scale],
       });
     } else {
       console.error("Message failed to process");

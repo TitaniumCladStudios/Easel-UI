@@ -30,15 +30,30 @@
     <!--   </div> -->
     <!-- </div> -->
 
-    <div class="opacity-controls">
-      <label for="opacity">Visiblity</label>
-      <input
-        name="opacity"
-        id="opacity"
-        type="range"
-        value="100"
-        class="win10-thumb"
-      />
+    <div class="slider-controls">
+      <div>
+        <label for="opacity">Visiblity</label>
+        <input
+          name="opacity"
+          id="opacity"
+          type="range"
+          value="100"
+          class="win10-thumb"
+        />
+      </div>
+      <div>
+        <label for="Scale">Scale</label>
+        <input
+          min="-100"
+          value="0"
+          max="100"
+          name="scale"
+          id="scale"
+          type="range"
+          value="50"
+          class="win10-thumb"
+        />
+      </div>
     </div>
 
     <button class="light-blue toggle-btn" id="toggleCanvas">

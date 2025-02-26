@@ -105,12 +105,17 @@ button:disabled:hover {
   border-left: 1px solid gray;
 }
 
-.opacity-controls {
+.slider-controls {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+  height: 150px;
+  justify-content: center;
+}
+.slider-controls > div {
   display: flex;
   gap: 16px;
   align-items: center;
-  padding: 0px 16px;
-  height: calc(100% - 150px);
 }
 
 /* Input ranges */
