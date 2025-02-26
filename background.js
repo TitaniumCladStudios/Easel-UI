@@ -74,5 +74,7 @@ chrome.commands.onCommand.addListener(async (command) => {
       target: { tabId: tab.id },
       func: deleteImage,
     });
+  } else if (command == "open-menu") {
+    chrome.action.openPopup();
   }
 });

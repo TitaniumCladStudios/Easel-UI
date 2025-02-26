@@ -61,6 +61,11 @@ you need to hide the Easel to navigate around the page, but don't want to
 deleted the Easel, you can toggle the Easel on and off using the toggle button
 at the bottom of the menu.
 
+## Keyboard Shortcuts
+
+- **Ctrl+Shift+O**: Open the Easel Menu
+- **Ctrl+Shift+D**: Remove image from the Easel
+
 ## Road Map
 
 This was a weekend project that I threw together quickly to create a free

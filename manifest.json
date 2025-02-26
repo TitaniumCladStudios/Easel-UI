@@ -20,6 +20,13 @@
         "mac": "MacCtrl+Shift+D"
       },
       "description": "Remove the current image from the Easel"
+    },
+    "open-menu": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+O",
+        "mac": "MacCtrl+Shift+O"
+      },
+      "description": "Open the menu"
     }
   }
 }
