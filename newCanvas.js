@@ -26,7 +26,6 @@ function spawnCanvas() {
   canvas.style.top = "0";
   canvas.style.left = "0";
   canvas.style.zIndex = "1000";
-  canvas.style.border = "1px solid red";
   canvas.style.boxSizing = "border-box";
   canvas.setAttribute("data-layer-number", 0);
 
