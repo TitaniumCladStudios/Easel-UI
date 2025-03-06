@@ -1,64 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ropa+Sans:ital@0;1&display=swap');
 
 body {
   width: 300px;
-  height: 250px;
   padding: 0px;
   margin: 0px;
-  font-family: "Montserrat", serif;
-  border: 1px solid black;
+  font-family: "Poppins", sans-serif;
   background-color: #fff;
   font-size: 18px;
 }
 
 .options {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background-color: #ededed;
-  border-bottom: 1px solid gray;
-}
-
-button {
-  width: 100%;
-  height: 50px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  font-size: 18px;
-  background-color: #ededed;
-  border-right: 1px solid gray;
+  background-color: #212121;
 }
 
-.no-border {
-  border: none;
-}
-
-.toggle-btn {
-  border: none;
-}
-
-button:hover {
-  cursor: pointer;
-  filter: brightness(75%);
-}
-
-button:disabled:hover {
-  filter: brightness(100%);
+.options>button {
+  height: 50px;
+  width: 100px;
 }
 
 .top-bar {
   width: 100%;
   height: 50px;
   align-self: start;
-  background-color: #3a3a3a;
-  border-bottom: 1px solid #afafaf;
+  background-color: #212121;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Anton SC", serif;
-  font-size: 24px;
+  font-size: 32px;
   color: #fff;
+  font-family: "Ropa Sans", sans-serif;
 }
 
 .light-blue {
@@ -95,11 +66,11 @@ button:disabled:hover {
   height: 50px;
 }
 
-.layer > div {
+.layer>div {
   display: flex;
 }
 
-.layer > div > button {
+.layer>div>button {
   aspect-ratio: 1/1;
   border: none;
   border-left: 1px solid gray;
@@ -112,7 +83,8 @@ button:disabled:hover {
   height: 150px;
   justify-content: center;
 }
-.slider-controls > div {
+
+.slider-controls>div {
   display: flex;
   gap: 16px;
   align-items: center;
@@ -144,23 +116,15 @@ input[type="range"].win10-thumb {
   --clip-edges: 0.0125em;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    background-color: #000;
-  }
 
-  html::before {
-    background: radial-gradient(circle at center, #101112, #000);
-  }
 
-  input[type="range"] {
-    color: #f07167;
-    --track-color: rgba(255, 255, 255, 0.1);
-  }
+input[type="range"] {
+  color: #f07167;
+  --track-color: rgba(255, 255, 255, 0.1);
+}
 
-  input[type="range"].win10-thumb {
-    color: #3a86ff;
-  }
+input[type="range"].win10-thumb {
+  color: #3a86ff;
 }
 
 /* === range commons === */
@@ -199,27 +163,23 @@ input[type="range"]::-webkit-slider-thumb {
   --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
   --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
   --clip-further: calc(100% + 1px);
-  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
-    100vmax currentColor;
+  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0 100vmax currentColor;
 
   width: var(--thumb-width, var(--thumb-height));
-  background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
-    50% calc(var(--track-height) + 1px);
+  background: linear-gradient(currentColor 0 0) scroll no-repeat left center / 50% calc(var(--track-height) + 1px);
   background-color: currentColor;
   box-shadow: var(--box-fill);
   border-radius: var(--thumb-width, var(--thumb-height));
 
   filter: brightness(100%);
-  clip-path: polygon(
-    100% -1px,
-    var(--clip-edges) -1px,
-    0 var(--clip-top),
-    -100vmax var(--clip-top),
-    -100vmax var(--clip-bottom),
-    0 var(--clip-bottom),
-    var(--clip-edges) 100%,
-    var(--clip-further) var(--clip-further)
-  );
+  clip-path: polygon(100% -1px,
+      var(--clip-edges) -1px,
+      0 var(--clip-top),
+      -100vmax var(--clip-top),
+      -100vmax var(--clip-bottom),
+      0 var(--clip-bottom),
+      var(--clip-edges) 100%,
+      var(--clip-further) var(--clip-further));
 }
 
 input[type="range"]:hover::-webkit-slider-thumb {
@@ -233,8 +193,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center /
-    100% calc(var(--track-height) + 1px);
+  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100% calc(var(--track-height) + 1px);
 }
 
 input[type="range"]:disabled::-webkit-slider-thumb {
@@ -302,4 +261,66 @@ input[type="range"]:active::-moz-range-progress {
 
 input[type="range"]:disabled::-moz-range-thumb {
   cursor: not-allowed;
+}
+
+/* Button CSS I yoinked */
+/* From Uiverse.io by adamgiebl */
+.cssbuttons-io {
+  position: relative;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(to right, #354ef2, #a710e3);
+  color: #fff;
+  overflow: hidden;
+  width: 100%;
+}
+
+.delete {
+  background: linear-gradient(to right, #fa9a00, #f70707);
+}
+
+.cssbuttons-io svg {
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.5em;
+}
+
+.cssbuttons-io span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cssbuttons-io::before {
+  content: "";
+  background: #212121;
+  width: 120%;
+  left: -10%;
+  transform: skew(20deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+  transform: scale(0.95);
 }

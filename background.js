@@ -10,11 +10,6 @@ function toggleCanvas() {
   }
 }
 
-function toggleUploadModal() {
-  let modal = document.getElementById("uploadModal");
-  modal.showModal();
-}
-
 function changeOpacity(opacity) {
   let layer = document.getElementById("overlayCanvas");
   if (layer == null) return;
@@ -26,18 +21,17 @@ function changeScale(scale) {
   layer.style.scale = 1 + scale / 100;
 }
 
+function deleteEasel() {
+  document.body.removeChild(document.getElementById("overlayCanvas"));
+}
+
 chrome.runtime.onMessage.addListener(
   async function (request, sender, sendResponse) {
     let queryOptions = { active: true, lastFocusedWindow: true };
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
     let [tab] = await chrome.tabs.query(queryOptions);
 
-    if (request.newEasel) {
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        files: ["newCanvas.js"],
-      });
-    } else if (request.toggleCanvas) {
+    if (request.toggleCanvas) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: toggleCanvas,
@@ -45,7 +39,7 @@ chrome.runtime.onMessage.addListener(
     } else if (request.loadImage) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        func: toggleUploadModal,
+        files: ["newCanvas.js"],
       });
     } else if (request.changeOpacity) {
       chrome.scripting.executeScript({
@@ -58,6 +52,11 @@ chrome.runtime.onMessage.addListener(
         target: { tabId: tab.id },
         func: changeScale,
         args: [request.scale],
+      });
+    } else if (request.deleteEasel) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: deleteEasel,
       });
     } else {
       console.error("Message failed to process");

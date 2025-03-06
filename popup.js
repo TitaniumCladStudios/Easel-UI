@@ -1,4 +1,5 @@
-let newEaselBtn = document.getElementById("newEasel");
+// let newEaselBtn = document.getElementById("newEasel");
+let deleteBtn = document.getElementById("deleteCanvas");
 let toggleCanvasBtn = document.getElementById("toggleCanvas");
 let loadImageBtn = document.getElementById("loadImage");
 let opacitySlider = document.getElementById("opacity");
@@ -6,11 +7,13 @@ let scaleSlider = document.getElementById("scale");
 
 let layerCount = 0;
 
-newEaselBtn.message = { newEasel: true };
+// newEaselBtn.message = { newEasel: true };
+deleteBtn.message = { deleteEasel: true };
 toggleCanvasBtn.message = { toggleCanvas: true };
 loadImageBtn.message = { loadImage: true };
-newEaselBtn.addEventListener("click", sendMessage, false);
+// newEaselBtn.addEventListener("click", sendMessage, false);
 toggleCanvasBtn.addEventListener("click", sendMessage, false);
+deleteBtn.addEventListener("click", sendMessage, false);
 loadImageBtn.addEventListener("click", sendMessage, false);
 opacitySlider.addEventListener("input", changeOpacity);
 scaleSlider.addEventListener("input", changeScale);

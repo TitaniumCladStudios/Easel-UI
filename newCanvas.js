@@ -116,3 +116,10 @@ function handleImage(e) {
   document.getElementById("imageLoader").value = "";
   document.getElementById("uploadModal").close();
 }
+
+function toggleUpload() {
+  let modal = document.getElementById("uploadModal");
+  modal.showModal();
+}
+
+toggleUpload();

@@ -1,65 +1,54 @@
 <html>
-  <head>
-    <title>Easel</title>
-    <link rel="stylesheet" href="popup.css" />
-  </head>
 
-  <body>
-    <div class="top-bar">Easel UI Checker</div>
-    <div class="options">
-      <button id="newEasel">New</button>
-      <button id="saveCanvas" title="Coming soon" disabled>Save</button>
-      <button id="loadCanvas" title="Coming soon" disabled>Load</button>
-      <button class="no-border" id="loadImage">Import</button>
+<head>
+  <title>Easel</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <div class="top-bar">Easel UI Checker</div>
+
+
+  <!-- <div class="layer-list" id="layerList"> -->
+  <!--   <div class="layer"> -->
+  <!--     <p>Layer Name</p> -->
+  <!--     <div> -->
+  <!--       <button>&#128065;</button> -->
+  <!--       <button>&cross;</button> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!--   <div class="layer"> -->
+  <!--     <p>Layer Name</p> -->
+  <!--     <div> -->
+  <!--       <button>&#128065;</button> -->
+  <!--       <button>&cross;</button> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+
+  <div class="slider-controls">
+    <div>
+      <label for="opacity">Visiblity</label>
+      <input name="opacity" id="opacity" type="range" value="100" class="win10-thumb" />
     </div>
-
-    <!-- <div class="layer-list" id="layerList"> -->
-    <!--   <div class="layer"> -->
-    <!--     <p>Layer Name</p> -->
-    <!--     <div> -->
-    <!--       <button>&#128065;</button> -->
-    <!--       <button>&cross;</button> -->
-    <!--     </div> -->
-    <!--   </div> -->
-    <!--   <div class="layer"> -->
-    <!--     <p>Layer Name</p> -->
-    <!--     <div> -->
-    <!--       <button>&#128065;</button> -->
-    <!--       <button>&cross;</button> -->
-    <!--     </div> -->
-    <!--   </div> -->
-    <!-- </div> -->
-
-    <div class="slider-controls">
-      <div>
-        <label for="opacity">Visiblity</label>
-        <input
-          name="opacity"
-          id="opacity"
-          type="range"
-          value="100"
-          class="win10-thumb"
-        />
-      </div>
-      <div>
-        <label for="Scale">Scale</label>
-        <input
-          min="-100"
-          value="0"
-          max="100"
-          name="scale"
-          id="scale"
-          type="range"
-          value="50"
-          class="win10-thumb"
-        />
-      </div>
+    <div>
+      <label for="Scale">Scale</label>
+      <input min="-100" value="0" max="100" name="scale" id="scale" type="range" value="50" class="win10-thumb" />
     </div>
+  </div>
 
-    <button class="light-blue toggle-btn" id="toggleCanvas">
-      Toggle Easel
+  <div class="options">
+    <!-- <button id="newEasel">New</button> -->
+    <button id="loadImage" class="cssbuttons-io"><span>Import</span></button>
+    <button class="cssbuttons-io" id="toggleCanvas">
+      <span>Toggle</span>
     </button>
+    <button class="cssbuttons-io delete" id="deleteCanvas"><span>Delete</span></button>
 
-    <script src="popup.js"></script>
-  </body>
+  </div>
+
+
+  <script src="popup.js"></script>
+</body>
+
 </html>
