@@ -23,6 +23,7 @@ function changeScale(scale) {
 
 function deleteEasel() {
   document.body.removeChild(document.getElementById("overlayCanvas"));
+  localStorage.removeItem("storedEasel");
 }
 
 chrome.runtime.onMessage.addListener(

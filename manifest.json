@@ -13,6 +13,12 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["persist.js"]
+    }
+  ],
   "commands": {
     "delete-image": {
       "suggested_key": {

@@ -1,20 +1,11 @@
-// This script adds in a canvas element that overlays the entire page
+let dataURL = localStorage.getItem("storedEasel");
 
-// Check if the canvas exists and add it. Otherwise, remove it.
-if (document.getElementById("overlayCanvas") === null) {
-  spawnCanvas();
-} else {
-  document.body.removeChild(document.getElementById("overlayCanvas"));
-  if (
-    window.confirm(
-      "Do you want to start a new canvas? Unsaved changes will be lost.",
-    )
-  ) {
-    spawnCanvas();
-  }
+if (dataURL != null && dataURL != "") {
+  console.log("loading canvas");
+  spawnPersistedCanvas(dataURL);
 }
 
-function spawnCanvas() {
+function spawnPersistedCanvas(dataURL) {
   // Create the canvas
   let canvas = document.createElement("canvas");
 
@@ -32,6 +23,14 @@ function spawnCanvas() {
 
   // Add the canvas
   document.body.appendChild(canvas);
+  let ctx = canvas.getContext("2d");
+
+  let img = new Image();
+  img.src = dataURL;
+  img.onload = () => {
+    console.log(img);
+    ctx.drawImage(img, 0, 0);
+  };
 
   // Create an image uploader modal
   let uploadModal = document.createElement("dialog");
@@ -76,7 +75,6 @@ function handleImage(e) {
       // Draw the image initially
 
       ctx.drawImage(img, imageX, imageY);
-      saveCanvas(canvas);
 
       canvas.addEventListener("mousedown", (event) => {
         isDragging = true;
@@ -104,12 +102,10 @@ function handleImage(e) {
 
           startY = event.clientY - canvas.offsetTop;
         }
-        saveCanvas(canvas);
       });
 
       canvas.addEventListener("mouseup", () => {
         isDragging = false;
-        saveCanvas(canvas);
       });
     };
     img.src = event.target.result;
@@ -118,15 +114,4 @@ function handleImage(e) {
 
   document.getElementById("imageLoader").value = "";
   document.getElementById("uploadModal").close();
-}
-
-function toggleUpload() {
-  let modal = document.getElementById("uploadModal");
-  modal.showModal();
-}
-
-toggleUpload();
-
-function saveCanvas(canvas) {
-  localStorage.setItem("storedEasel", canvas.toDataURL());
 }
