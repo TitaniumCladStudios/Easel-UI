@@ -25,15 +25,6 @@ software like Figma.
 
 ## Usage
 
-### Creating a new Easel
-
-To place a new canvas on the Easel, click on the Easel icon in your toolbar to
-bring up the Easel menu. Then click "New". You'll know it worked because you'll
-see a 1 pixel wide red border on the edges of your screen.
-
-If you click "New" again after creating an Easel, you'll be prompted if you want
-to start over.
-
 ### Adding an Image to the Easel
 
 To upload your Figma component, export it in its standard size as a PNG. Then,
@@ -59,7 +50,13 @@ The Easel has a very high z-index layer to ensure it goes overtop most webpages.
 This can cause interactivity problems and even prevent scrolling at times. If
 you need to hide the Easel to navigate around the page, but don't want to
 deleted the Easel, you can toggle the Easel on and off using the toggle button
-at the bottom of the menu.
+in the menu.
+
+### Deleting the Easel
+
+If you're done with the Easel and ready to get back to your webpage, simply
+click the "delete" button in the bottom menu. This will remove the Easel from
+your webpage and allow you to return to normal functionality.
 
 ## Keyboard Shortcuts
 
