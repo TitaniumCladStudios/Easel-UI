@@ -70,9 +70,9 @@ alternative to other tools that allow you to "onion skin" your figma components.
 With that said, I ran out of time to make it do everything I wanted. I may add
 these features in the future:
 
-- The ability to save and load canvases
-- More keyboard shortcuts
-- Context menu actions
-- A layer system to support multiple images
-- The ability to persist the canvas automatically across refreshes
-- Export-Easel-As-Image functionality
+- [] The ability to save and load canvases
+- [] More keyboard shortcuts
+- [] Context menu actions
+- [] A layer system to support multiple images
+- [x] The ability to persist the canvas automatically across refreshes
+- [] Export-Easel-As-Image functionality
