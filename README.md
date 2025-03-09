@@ -1,5 +1,7 @@
 # Easel UI Checker
 
+![An Easel that has a code symbol on it](./images/Easel_Icon.png "Easel UI Logo")
+
 This Google Chrome extension allows you to generate a transparent canvas on top
 of any webpage. You can then upload an image to that canvas and drag and drop it
 anywhere on the page. You can then manipulate the canvas opacity to compare the
