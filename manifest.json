@@ -24,8 +24,10 @@
       ],
       "js": [
         "persist.js",
+        "html2canvas.js",
+        "pixelmatch.js",
         "figmaAPI.js",
-        "figma.js"
+        "comparison.js"
       ]
     }
   ],
