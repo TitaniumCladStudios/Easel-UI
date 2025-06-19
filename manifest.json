@@ -6,7 +6,11 @@
   "icons": {
     "128": "images/Easel_Icon.png"
   },
-  "permissions": ["activeTab", "scripting", "commands"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "commands"
+  ],
   "action": {
     "default_popup": "popup.html"
   },
@@ -15,8 +19,14 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["persist.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "persist.js",
+        "figmaAPI.js",
+        "figma.js"
+      ]
     }
   ],
   "commands": {
