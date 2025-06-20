@@ -401,3 +401,119 @@ input[type="range"]:disabled::-webkit-slider-thumb {
 .cssbuttons-io:active {
   transform: scale(0.95);
 }
+
+/* Components Section Styles */
+.components-section {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.components-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+.components-section p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.components-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.component-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.component-item:last-child {
+  border-bottom: none;
+}
+
+.component-item:hover {
+  background-color: #f8f9fa;
+}
+
+.component-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.component-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.component-selector {
+  font-size: 12px;
+  color: #666;
+  font-family: monospace;
+  background-color: #f1f3f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.component-compare-btn {
+  background: linear-gradient(to right, #4b70f5, #354ef2);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.component-compare-btn:hover {
+  background: linear-gradient(to right, #354ef2, #4c3bcf);
+  transform: translateY(-1px);
+}
+
+.component-compare-btn:active {
+  transform: translateY(0);
+}
+
+.loading-message {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.no-components-message {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+}
+
+.no-components-message p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.no-components-message small {
+  font-size: 12px;
+  color: #bbb;
+}
+
+#refreshComponents {
+  background: linear-gradient(to right, #28a745, #20c997);
+  font-size: 14px;
+  height: 36px;
+  width: 100%;
+}

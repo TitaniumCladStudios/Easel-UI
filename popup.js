@@ -11,6 +11,10 @@ let figmaFileKeyInput = document.getElementById("figmaFileKey");
 let saveSettingsBtn = document.getElementById("saveSettings");
 let toggleTokenVisibilityBtn = document.getElementById("toggleTokenVisibility");
 
+// Components elements
+let componentsList = document.getElementById("componentsList");
+let refreshComponentsBtn = document.getElementById("refreshComponents");
+
 // Tab elements
 let tabButtons = document.querySelectorAll(".tab-button");
 let tabContents = document.querySelectorAll(".tab-content");
@@ -40,6 +44,12 @@ scaleSlider.addEventListener("input", changeScale);
 saveSettingsBtn.addEventListener("click", saveSettings);
 toggleTokenVisibilityBtn.addEventListener("click", toggleTokenVisibility);
 
+// Components event listeners
+refreshComponentsBtn.addEventListener("click", scanForComponents);
+
+// Initialize components scan when popup opens
+scanForComponents();
+
 function switchTab(tabName) {
   // Remove active class from all tabs and contents
   tabButtons.forEach(btn => btn.classList.remove("active"));
@@ -48,6 +58,11 @@ function switchTab(tabName) {
   // Add active class to selected tab and content
   document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
   document.getElementById(`${tabName}-tab`).classList.add("active");
+  
+  // If switching to components tab, refresh the component list
+  if (tabName === 'components') {
+    scanForComponents();
+  }
 }
 
 function sendMessage(e) {
@@ -142,5 +157,135 @@ function toggleTokenVisibility() {
     figmaTokenInput.type = 'password';
     toggleTokenVisibilityBtn.innerHTML = '&#x1F441;'; // eye
     toggleTokenVisibilityBtn.title = 'Show token';
+  }
+}
+
+// Components functionality
+async function scanForComponents() {
+  try {
+    // Show loading state
+    componentsList.innerHTML = `
+      <div class="loading-message">
+        <p>Scanning page for components...</p>
+      </div>
+    `;
+
+    // Query the active tab for components
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    
+    // Inject script to find components
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: findComponentsOnPage,
+    });
+
+    const components = results[0].result;
+    displayComponents(components);
+    
+  } catch (error) {
+    console.error('Error scanning for components:', error);
+    componentsList.innerHTML = `
+      <div class="no-components-message">
+        <p>Error scanning for components</p>
+        <small>Make sure you're on a page with Figma components</small>
+      </div>
+    `;
+  }
+}
+
+function findComponentsOnPage() {
+  // This function runs in the context of the web page
+  const components = [];
+  const elements = document.querySelectorAll('[data-figma-component]');
+  
+  elements.forEach((element, index) => {
+    const componentName = element.getAttribute('data-figma-component');
+    const tagName = element.tagName.toLowerCase();
+    const className = element.className || '';
+    const id = element.id || '';
+    
+    // Create a simple selector for the element
+    let selector = tagName;
+    if (id) {
+      selector += `#${id}`;
+    } else if (className) {
+      const firstClass = className.split(' ')[0];
+      if (firstClass) {
+        selector += `.${firstClass}`;
+      }
+    }
+    
+    components.push({
+      index,
+      componentName,
+      selector,
+      tagName,
+      className,
+      id
+    });
+  });
+  
+  return components;
+}
+
+function displayComponents(components) {
+  if (components.length === 0) {
+    componentsList.innerHTML = `
+      <div class="no-components-message">
+        <p>No components found on this page</p>
+        <small>Add data-figma-component attributes to elements you want to compare</small>
+      </div>
+    `;
+    return;
+  }
+
+  const componentsHTML = components.map(component => `
+    <div class="component-item">
+      <div class="component-info">
+        <div class="component-name">${component.componentName}</div>
+        <div class="component-selector">${component.selector}</div>
+      </div>
+      <button class="component-compare-btn" data-component-index="${component.index}">
+        Compare
+      </button>
+    </div>
+  `).join('');
+
+  componentsList.innerHTML = componentsHTML;
+
+  // Add event listeners to compare buttons
+  const compareButtons = componentsList.querySelectorAll('.component-compare-btn');
+  compareButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const componentIndex = parseInt(button.getAttribute('data-component-index'));
+      triggerComparison(componentIndex);
+    });
+  });
+}
+
+async function triggerComparison(componentIndex) {
+  try {
+    // Get the active tab
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    
+    // Send message to trigger comparison for specific component
+    await chrome.tabs.sendMessage(tab.id, {
+      action: 'runComparison',
+      componentIndex: componentIndex
+    });
+    
+    // Visual feedback
+    const button = document.querySelector(`[data-component-index="${componentIndex}"]`);
+    const originalText = button.textContent;
+    button.textContent = 'Comparing...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.disabled = false;
+    }, 3000);
+    
+  } catch (error) {
+    console.error('Error triggering comparison:', error);
   }
 }

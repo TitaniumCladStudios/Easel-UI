@@ -14,6 +14,7 @@
   <div class="tab-container">
     <div class="tab-nav">
       <button class="tab-button active" data-tab="controls">Controls</button>
+      <button class="tab-button" data-tab="components">Components</button>
       <button class="tab-button" data-tab="settings">Settings</button>
     </div>
 
@@ -36,6 +37,22 @@
           <span>Toggle</span>
         </button>
         <button class="cssbuttons-io delete" id="deleteCanvas"><span>Delete</span></button>
+      </div>
+    </div>
+
+    <!-- Components Tab -->
+    <div class="tab-content" id="components-tab">
+      <div class="components-section">
+        <h3>Available Components</h3>
+        <p>These elements can be automatically compared to Figma components pixel by pixel.</p>
+        <div class="components-list" id="componentsList">
+          <div class="loading-message">
+            <p>Scanning page for components...</p>
+          </div>
+        </div>
+        <button id="refreshComponents" class="cssbuttons-io">
+          <span>Refresh Components</span>
+        </button>
       </div>
     </div>
 

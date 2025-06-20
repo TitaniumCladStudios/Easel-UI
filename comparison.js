@@ -54,7 +54,7 @@ function canvasToBuffer(canvas) {
 }
 
 // Main comparison function
-async function runComparison() {
+async function runComparison(componentIndex = 0) {
   // Initialize settings first
   const settingsLoaded = await initializeSettings();
   if (!settingsLoaded) {
@@ -66,14 +66,30 @@ async function runComparison() {
     .getFile({ file_key: figmaFileKey })
     .then(async (file) => {
       let figmaComponents = document.querySelectorAll("[data-figma-component]");
-      const searchTerm = figmaComponents[0]?.getAttribute("data-figma-component");
+      
+      // Use the specified component index, or default to first component
+      if (componentIndex >= figmaComponents.length) {
+        console.error(`Component index ${componentIndex} is out of range. Found ${figmaComponents.length} components.`);
+        return;
+      }
+      
+      const selectedComponent = figmaComponents[componentIndex];
+      const searchTerm = selectedComponent?.getAttribute("data-figma-component");
+      
+      if (!searchTerm) {
+        console.error('No component found or no data-figma-component attribute');
+        return;
+      }
+      
+      console.log(`Comparing component: "${searchTerm}" (index: ${componentIndex})`);
+      
       const matchingComponents = findComponentsByName(
         file.components,
         searchTerm
       );
 
       // Wait for captureElement to complete and get the local image canvas
-      const localCanvas = await captureElement(figmaComponents[0]);
+      const localCanvas = await captureElement(selectedComponent);
 
       const componentIds = Object.keys(matchingComponents);
 
@@ -242,8 +258,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'settingsUpdated') {
     // Reinitialize with new settings
     initializeSettings();
+  } else if (request.action === 'runComparison') {
+    // Handle comparison request from popup
+    const componentIndex = request.componentIndex || 0;
+    runComparison(componentIndex);
+    sendResponse({ success: true });
   }
 });
 
-// Run comparison when page loads
-runComparison();
+// Initialize settings when the script loads
+initializeSettings();
