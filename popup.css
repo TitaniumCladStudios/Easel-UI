@@ -9,6 +9,135 @@ body {
   font-size: 18px;
 }
 
+/* Tab Styles */
+.tab-container {
+  width: 100%;
+}
+
+.tab-nav {
+  display: flex;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.tab-button.active {
+  background-color: #4b70f5;
+  color: white;
+  border-bottom: 2px solid #354ef2;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Settings Section Styles */
+.settings-section {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.settings-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.setting-item {
+  margin-bottom: 16px;
+}
+
+.setting-item label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.setting-item input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.setting-item input:focus {
+  outline: none;
+  border-color: #4b70f5;
+  box-shadow: 0 0 0 2px rgba(75, 112, 245, 0.2);
+}
+
+.input-with-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-button input {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  color: #666;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.help-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+}
+
+.cssbuttons-io.save {
+  background: linear-gradient(to right, #28a745, #20c997);
+  margin-top: 8px;
+  font-size: 14px;
+  height: 36px;
+  width: 100%;
+}
+
 .donate {
   text-decoration: none;
   color: #fff;

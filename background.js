@@ -73,7 +73,6 @@ async function cropImage(dataUrl, bounds, devicePixelRatio = 1) {
       reader.readAsDataURL(croppedBlob);
     });
   } catch (error) {
-    console.error('Error in cropImage:', error);
     throw error;
   }
 }
@@ -83,31 +82,23 @@ chrome.runtime.onMessage.addListener(
     let queryOptions = { active: true, lastFocusedWindow: true };
 
     if (request.action === 'captureTab') {
-      console.log('Received captureTab request:', request);
-      
       // Handle screenshot capture asynchronously
       (async () => {
         try {
-          console.log('Starting screenshot capture...');
-          
           // `tab` will either be a `tabs.Tab` instance or `undefined`.
           let [tab] = await chrome.tabs.query(queryOptions);
-          console.log('Found tab:', tab?.id);
           
           // Capture the visible tab
           const dataUrl = await chrome.tabs.captureVisibleTab(tab.windowId, {
             format: 'png',
             quality: 100
           });
-          console.log('Screenshot captured, data URL length:', dataUrl.length);
           
           // Crop the image to the specified bounds
           const croppedDataUrl = await cropImage(dataUrl, request.bounds, request.devicePixelRatio);
-          console.log('Image cropped, sending response...');
           
           sendResponse({ success: true, dataUrl: croppedDataUrl });
         } catch (error) {
-          console.error('Screenshot capture failed:', error);
           sendResponse({ success: false, error: error.message });
         }
       })();
