@@ -41,8 +41,8 @@ api
       searchTerm
     );
 
-    // Wait for html2canvas to complete and get the local image
-    const canvas = await html2canvas(figmaComponents[0]);
+    // Wait for captureElement to complete and get the local image
+    const canvas = await captureElement(figmaComponents[0]);
     const localImageBuffer = await canvasToBuffer(canvas);
     
     console.log("Local image buffer:", localImageBuffer);
@@ -172,6 +172,51 @@ api
             console.log('Total pixels compared:', totalPixels);
             console.log('Similarity percentage:', `${similarityPercentage}%`);
             console.log('Images match:', numDiffPixels === 0 ? 'YES' : 'NO');
+            
+            // Put the diff image data onto the canvas and create download link
+            diffCtx.putImageData(diffImageData, 0, 0);
+            
+            // Create download link for the diff image
+            diffCanvas.toBlob((blob) => {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = `image-diff-${Date.now()}.png`;
+              link.textContent = 'Download Image Diff';
+              link.style.cssText = `
+                display: block;
+                margin: 10px 0;
+                padding: 10px 15px;
+                background: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+                width: fit-content;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+              `;
+              
+              // Add the download link to the page
+              document.body.appendChild(link);
+              
+              console.log('Diff image download link created and added to page');
+              
+              // Optional: Auto-click to download immediately
+              // link.click();
+              
+              // Clean up the object URL after a delay
+              setTimeout(() => {
+                URL.revokeObjectURL(url);
+                // Remove the link after 30 seconds
+                if (link.parentNode) {
+                  link.parentNode.removeChild(link);
+                }
+              }, 30000); // Clean up after 30 seconds
+            }, 'image/png');
             
             // Clean up object URLs
             URL.revokeObjectURL(localImageObjectUrl);

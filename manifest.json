@@ -9,7 +9,11 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "commands"
+    "commands",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "action": {
     "default_popup": "popup.html"
@@ -24,7 +28,7 @@
       ],
       "js": [
         "persist.js",
-        "html2canvas.js",
+        "screenshot-utils.js",
         "pixelmatch.js",
         "figmaAPI.js",
         "comparison.js"
