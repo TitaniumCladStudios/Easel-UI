@@ -9,6 +9,135 @@ body {
   font-size: 18px;
 }
 
+/* Tab Styles */
+.tab-container {
+  width: 100%;
+}
+
+.tab-nav {
+  display: flex;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.tab-button.active {
+  background-color: #4b70f5;
+  color: white;
+  border-bottom: 2px solid #354ef2;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Settings Section Styles */
+.settings-section {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.settings-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.setting-item {
+  margin-bottom: 16px;
+}
+
+.setting-item label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.setting-item input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.setting-item input:focus {
+  outline: none;
+  border-color: #4b70f5;
+  box-shadow: 0 0 0 2px rgba(75, 112, 245, 0.2);
+}
+
+.input-with-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-button input {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  color: #666;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.help-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+}
+
+.cssbuttons-io.save {
+  background: linear-gradient(to right, #28a745, #20c997);
+  margin-top: 8px;
+  font-size: 14px;
+  height: 36px;
+  width: 100%;
+}
+
 .donate {
   text-decoration: none;
   color: #fff;
@@ -211,69 +340,6 @@ input[type="range"]:disabled::-webkit-slider-thumb {
   cursor: not-allowed;
 }
 
-/* === Firefox specific styles === */
-input[type="range"],
-input[type="range"]::-moz-range-track,
-input[type="range"]::-moz-range-thumb {
-  appearance: none;
-  transition: all ease 100ms;
-  height: var(--thumb-height);
-}
-
-input[type="range"]::-moz-range-track,
-input[type="range"]::-moz-range-thumb,
-input[type="range"]::-moz-range-progress {
-  background: #fff0;
-}
-
-input[type="range"]::-moz-range-thumb {
-  background: currentColor;
-  border: 0;
-  width: var(--thumb-width, var(--thumb-height));
-  border-radius: var(--thumb-width, var(--thumb-height));
-  cursor: grab;
-}
-
-input[type="range"]:active::-moz-range-thumb {
-  cursor: grabbing;
-}
-
-input[type="range"]::-moz-range-track {
-  width: 100%;
-  background: var(--track-color);
-}
-
-input[type="range"]::-moz-range-progress {
-  appearance: none;
-  background: currentColor;
-  transition-delay: 30ms;
-}
-
-input[type="range"]::-moz-range-track,
-input[type="range"]::-moz-range-progress {
-  height: calc(var(--track-height) + 1px);
-  border-radius: var(--track-height);
-}
-
-input[type="range"]::-moz-range-thumb,
-input[type="range"]::-moz-range-progress {
-  filter: brightness(100%);
-}
-
-input[type="range"]:hover::-moz-range-thumb,
-input[type="range"]:hover::-moz-range-progress {
-  filter: brightness(var(--brightness-hover));
-}
-
-input[type="range"]:active::-moz-range-thumb,
-input[type="range"]:active::-moz-range-progress {
-  filter: brightness(var(--brightness-down));
-}
-
-input[type="range"]:disabled::-moz-range-thumb {
-  cursor: not-allowed;
-}
-
 /* Button CSS I yoinked */
 /* From Uiverse.io by adamgiebl */
 .cssbuttons-io {
@@ -334,4 +400,120 @@ input[type="range"]:disabled::-moz-range-thumb {
 
 .cssbuttons-io:active {
   transform: scale(0.95);
+}
+
+/* Components Section Styles */
+.components-section {
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.components-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+.components-section p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.components-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.component-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.component-item:last-child {
+  border-bottom: none;
+}
+
+.component-item:hover {
+  background-color: #f8f9fa;
+}
+
+.component-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.component-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.component-selector {
+  font-size: 12px;
+  color: #666;
+  font-family: monospace;
+  background-color: #f1f3f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.component-compare-btn {
+  background: linear-gradient(to right, #4b70f5, #354ef2);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.component-compare-btn:hover {
+  background: linear-gradient(to right, #354ef2, #4c3bcf);
+  transform: translateY(-1px);
+}
+
+.component-compare-btn:active {
+  transform: translateY(0);
+}
+
+.loading-message {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.no-components-message {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+}
+
+.no-components-message p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.no-components-message small {
+  font-size: 12px;
+  color: #bbb;
+}
+
+#refreshComponents {
+  background: linear-gradient(to right, #28a745, #20c997);
+  font-size: 14px;
+  height: 36px;
+  width: 100%;
 }

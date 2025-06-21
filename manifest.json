@@ -6,7 +6,16 @@
   "icons": {
     "128": "images/Easel_Icon.png"
   },
-  "permissions": ["activeTab", "scripting", "commands"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "commands",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "popup.html"
   },
@@ -15,8 +24,16 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["persist.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "persist.js",
+        "screenshot-utils.js",
+        "pixelmatch.js",
+        "figmaAPI.js",
+        "comparison.js"
+      ]
     }
   ],
   "commands": {
